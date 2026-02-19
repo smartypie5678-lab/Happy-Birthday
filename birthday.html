@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --secondary-pink: #ffc3a0;
+            --text-color: #5d4037;
+            --white: #ffffff;
+            --accent: #d81b60;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Music Button Styling */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 20px;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin: 10px 0;
+            color: var(--accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .shayari-box {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        .btn:hover {
+            background: #ad1457;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+        }
+
+        /* Floating Balloons */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            border-radius: 50%;
+            z-index: 1;
+            bottom: -100px;
+            animation: fly 12s infinite linear;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bdayMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_feb6393798.mp3?filename=happy-birthday-instrumental-126408.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+    <div id="balloons-container"></div>
+
+    <div class="container">
+        <img src="10671.jpg" alt="Birthday Girl" class="profile-img">
+        
+        <h1>Happy Birthday!</h1>
+        
+        <div class="shayari-box">
+            Aaj hawa bhi kuch narmi si laayi hai,<br>
+            Jaise tumhari muskaan ne duniya sajayi hai।<br>
+            Janamdin ke is khoobsurat mauke par,<br>
+            Har khushi ne tujhe gale se lagayi hai।<br><br>
+            Tumhari baaton mein ek sukoon sa rehta hai,<br>
+            Jo dil ko bina kahe hi samjha jaata hai।<br>
+            Dosti ke is pyaare se rishte mein,<br>
+            Har ehsaas khud-ba-khud gehra ho jaata hai।<br><br>
+            Tumhari zindagi ho roshni se bhari,<br>
+            Tumhare sapne ho sach ke kareeb।<br>
+            Tum raho hamesha yun hi khaas,<br>
+            <strong>Happy Birthday!</strong>
+        </div>
+
+        <button class="btn" onclick="celebrate()">Celebrate! 🎉</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const music = document.getElementById('bdayMusic');
+        
+        // Browsers often block auto-play until user clicks. 
+        // So we start music when they click the main button.
+        function celebrate() {
+            music.play();
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffafbd', '#ffc3a0', '#d81b60']
+            });
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('music-control').innerText = "🎵";
+            } else {
+                music.pause();
+                document.getElementById('music-control').innerText = "🔇";
+            }
+        }
+
+        function createBalloons() {
+            const container = document.getElementById('balloons-container');
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDelay = Math.random() * 8 + 's';
+                balloon.style.backgroundColor = `hsla(${Math.random() * 360}, 70%, 75%, 0.5)`;
+                container.appendChild(balloon);
+            }
+        }
+
+        window.onload = createBalloons;
+    </script>
+</body>
+</html>
